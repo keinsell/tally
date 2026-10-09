@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - master
+      - release/*
+      - feature/*
+      - bugfix/*
+      - hotfix/*
+      - chore/*
+  push:
+    branches:
+      - master
+      - release/*
+      - feature/*
+      - bugfix/*
+      - hotfix/*
+      - chore/*
+
+jobs:
+  build:
+    name: "build"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential pkg-config \
+            libgtk-4-dev libadwaita-1-dev \
+            libglib2.0-dev libglib2.0-dev-bin \
+            blueprint-compiler \
+            desktop-file-utils appstream \
+            flatpak flatpak-builder librsvg2-common
+          flatpak remote-add --user --if-not-exists flathub \
+            https://dl.flathub.org/repo/flathub.flatpakrepo
+
+      - name: Cache Cargo dependencies
+        uses: Swatinem/rust-cache@v2
+
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+
+      - name: Clippy
+        run: cargo clippy --all-targets -- --deny warnings
+
+      - name: Install cargo-nextest
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-nextest
+
+      - name: Test
+        run: cargo nextest run --workspace --all-targets --no-tests=pass
+
+      - name: Validate desktop entry and metainfo
+        run: |
+          ./build-aux/stage-package-assets.sh
+          desktop-file-validate target/package-data/applications/com.keinsell.Tally.desktop
+          appstreamcli validate --no-net target/package-data/metainfo/com.keinsell.Tally.metainfo.xml
+
+      - name: Build release binary
+        run: cargo build --release --locked
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: tally-x86_64-unknown-linux-gnu
+          path: target/release/counter
+          if-no-files-found: error
+
+      - name: Build Flatpak bundle
+        run: ./build-aux/flatpak.sh
+
+      - name: Upload Flatpak bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: tally-x86_64.flatpak
+          path: tally-x86_64.flatpak
+          if-no-files-found: error

@@ -15,11 +15,6 @@ flatpak install --user tally-vX.Y.Z-x86_64.flatpak
 flatpak run com.keinsell.Tally
 ```
 
-This builds the manifest in `build-aux/` and exports `tally-<arch>.flatpak`
-in the project root. After changing `Cargo.lock`, regenerate the vendored
-Flatpak cargo sources so the offline build keeps working — see
-[CONTRIBUTING.md](CONTRIBUTING.md).
-
 ## Credits
 
 Application icon artwork by Victoria Lacroix, taken from
