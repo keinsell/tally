@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/dev/keinsell/Counter/">
+    <file preprocess="xml-stripblanks">counter.ui</file>
+    <file>style.css</file>
+  </gresource>
+  <gresource prefix="/dev/keinsell/Counter/icons">
+    <!-- NOTE: no `hicolor/` level here: a resource path registered with
+         Gtk.IconTheme.add_resource_path() substitutes for the theme
+         directory itself, so it must mirror <size>/<category>/<name>. -->
+    <file alias="scalable/apps/dev.keinsell.Counter.svg">icons/hicolor/scalable/apps/dev.keinsell.Counter.svg</file>
+    <file alias="symbolic/apps/dev.keinsell.Counter-symbolic.svg">icons/hicolor/symbolic/apps/dev.keinsell.Counter-symbolic.svg</file>
+  </gresource>
+</gresources>

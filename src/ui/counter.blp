@@ -1,0 +1,58 @@
+using Gtk 4.0;
+using Adw 1;
+
+Adw.ApplicationWindow counter-window {
+  title: "Counter";
+  default-width: 400;
+  default-height: 300;
+
+  content: Adw.ToolbarView {
+    [top] Adw.HeaderBar header-bar {
+      title-widget: Adw.WindowTitle header-title {
+        title: "Counter";
+      };
+
+      [end] Gtk.MenuButton menu-button {
+        icon-name: "open-menu-symbolic";
+        tooltip-text: "Main Menu";
+      }
+    }
+
+    content: Gtk.Box main-box {
+      orientation: vertical;
+      spacing: 24;
+      halign: center;
+      valign: center;
+
+      Gtk.Label count-label {
+        label: "0";
+        halign: center;
+        styles ["big-count"]
+      }
+
+      Gtk.Box button-box {
+        orientation: horizontal;
+        spacing: 12;
+        halign: center;
+
+        Gtk.Button dec-button {
+          label: "−";
+          action-name: "app.decrement";
+          styles ["big-button", "circular"]
+        }
+
+        Gtk.Button reset-button {
+          label: "Reset";
+          action-name: "app.reset";
+          styles ["big-button", "pill"]
+        }
+
+        Gtk.Button inc-button {
+          label: "+";
+          action-name: "app.increment";
+          styles ["big-button", "circular", "suggested-action"]
+        }
+      }
+    };
+  };
+}

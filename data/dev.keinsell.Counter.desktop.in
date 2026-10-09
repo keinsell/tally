@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Counter
+Comment=Keep track of counts
+Exec=counter
+Icon=@app-id@
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Utility;
+Keywords=counter;count;tally;
+StartupNotify=true
