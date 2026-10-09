@@ -34,7 +34,7 @@ fn counting_actions_update_the_label() {
     counter::register_resources();
 
     let app = adw::Application::new(
-        Some("dev.keinsell.Counter.Test"),
+        Some("com.keinsell.Tally.Test"),
         gtk::gio::ApplicationFlags::FLAGS_NONE,
     );
     app.register(gtk::gio::Cancellable::NONE)

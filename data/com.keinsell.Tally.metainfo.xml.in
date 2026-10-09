@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>@app-id@</id>
+  <name>Tally</name>
+  <summary>Keep track of counts</summary>
+  <developer id="com.keinsell">
+    <name>keinsell</name>
+  </developer>
+  <update_contact>keinsell_at_users.noreply.github.com</update_contact>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <description>
+    <p>
+      Tally is a small GNOME application for counting things up and down.
+      It keeps a single number on screen with large, touch-friendly controls.
+    </p>
+    <p>
+      Built with GTK 4 and libadwaita, it follows the GNOME design language
+      and adapts to narrow and wide windows, desktop and mobile form factors.
+    </p>
+    <ul>
+      <li>Increment, decrement and reset actions</li>
+      <li>Keyboard shortcuts for every action</li>
+      <li>Adaptive layout, following the GNOME design language</li>
+    </ul>
+  </description>
+  <categories>
+    <category>Utility</category>
+  </categories>
+  <keywords>
+    <keyword>counter</keyword>
+    <keyword>count</keyword>
+    <keyword>tally</keyword>
+    <keyword>clicker</keyword>
+  </keywords>
+  <branding>
+    <color type="primary">#3584e4</color>
+  </branding>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Counting with Tally</caption>
+      <image type="source">https://raw.githubusercontent.com/keinsell/tally/master/docs/assets/preview.png</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release version="0.1.0" date="2026-10-09">
+      <description>
+        <p>Initial release.</p>
+      </description>
+    </release>
+  </releases>
+  <launchable type="desktop-id">@app-id@.desktop</launchable>
+  <url type="homepage">https://github.com/keinsell/tally</url>
+  <url type="bugtracker">https://github.com/keinsell/tally/issues</url>
+  <url type="help">https://github.com/keinsell/tally#readme</url>
+  <url type="vcs-browser">https://github.com/keinsell/tally</url>
+  <url type="translate">https://github.com/keinsell/tally/issues</url>
+  <url type="donation">https://github.com/sponsors/keinsell</url>
+  <provides>
+    <binary>counter</binary>
+    <id>@app-id@.desktop</id>
+  </provides>
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </supports>
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-cartoon">none</content_attribute>
+    <content_attribute id="violence-fantasy">none</content_attribute>
+    <content_attribute id="violence-realistic">none</content_attribute>
+    <content_attribute id="violence-bloodshed">none</content_attribute>
+    <content_attribute id="violence-sexual">none</content_attribute>
+    <content_attribute id="drugs-alcohol">none</content_attribute>
+    <content_attribute id="drugs-narcotics">none</content_attribute>
+    <content_attribute id="drugs-tobacco">none</content_attribute>
+    <content_attribute id="sex-nudity">none</content_attribute>
+    <content_attribute id="sex-themes">none</content_attribute>
+    <content_attribute id="language-profanity">none</content_attribute>
+    <content_attribute id="language-humor">none</content_attribute>
+    <content_attribute id="language-discrimination">none</content_attribute>
+    <content_attribute id="social-chat">none</content_attribute>
+    <content_attribute id="social-info">none</content_attribute>
+    <content_attribute id="social-audio">none</content_attribute>
+    <content_attribute id="social-location">none</content_attribute>
+    <content_attribute id="social-contacts">none</content_attribute>
+    <content_attribute id="money-purchasing">none</content_attribute>
+    <content_attribute id="money-gambling">none</content_attribute>
+  </content_rating>
+</component>

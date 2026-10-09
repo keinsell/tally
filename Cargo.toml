@@ -1,7 +1,14 @@
 [package]
-name = "counter"
-version = "0.1.0"
+name = "tally"
+version = "1.0.0"
 edition = "2024"
+description = "Keep track of counts"
+license = "MIT"
+repository = "https://github.com/keinsell/tally"
+homepage = "https://github.com/keinsell/tally"
+authors = ["keinsell"]
+keywords = ["gnome", "gtk", "libadwaita", "counter"]
+categories = ["gui"]
 
 [lib]
 name = "counter"
@@ -14,3 +21,34 @@ path = "src/main.rs"
 [dependencies]
 gtk4 = "0.11.5"
 libadwaita = { version = "0.9", features = ["v1_5", "v1_6"] }
+
+[profile.release]
+strip = true
+lto = true
+
+# Native distro packages. Data files (desktop entry, metainfo, icons) are
+# staged by build-aux/stage-package-assets.sh into target/package-data/
+# before invoking the packager.
+[package.metadata.deb]
+maintainer = "keinsell <https://github.com/keinsell>"
+copyright = "keinsell"
+license-file = ["LICENSE", "0"]
+section = "utils"
+priority = "optional"
+depends = "libgtk-4-1, libadwaita-1-0"
+assets = [
+  ["target/release/counter", "usr/bin/", "755"],
+  ["target/package-data/applications/com.keinsell.Tally.desktop", "usr/share/applications/", "644"],
+  ["target/package-data/metainfo/com.keinsell.Tally.metainfo.xml", "usr/share/metainfo/", "644"],
+  ["target/package-data/icons/hicolor/scalable/apps/com.keinsell.Tally.svg", "usr/share/icons/hicolor/scalable/apps/", "644"],
+  ["target/package-data/icons/hicolor/symbolic/apps/com.keinsell.Tally-symbolic.svg", "usr/share/icons/hicolor/symbolic/apps/", "644"],
+]
+
+[package.metadata.generate-rpm]
+assets = [
+  { source = "target/release/counter", dest = "/usr/bin/counter", mode = "755" },
+  { source = "target/package-data/applications/com.keinsell.Tally.desktop", dest = "/usr/share/applications/com.keinsell.Tally.desktop", mode = "644" },
+  { source = "target/package-data/metainfo/com.keinsell.Tally.metainfo.xml", dest = "/usr/share/metainfo/com.keinsell.Tally.metainfo.xml", mode = "644" },
+  { source = "target/package-data/icons/hicolor/scalable/apps/com.keinsell.Tally.svg", dest = "/usr/share/icons/hicolor/scalable/apps/com.keinsell.Tally.svg", mode = "644" },
+  { source = "target/package-data/icons/hicolor/symbolic/apps/com.keinsell.Tally-symbolic.svg", dest = "/usr/share/icons/hicolor/symbolic/apps/com.keinsell.Tally-symbolic.svg", mode = "644" },
+]

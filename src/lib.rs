@@ -40,15 +40,15 @@ pub fn show_about(parent: &adw::ApplicationWindow) {
     // window can stay small (400x300). On narrow/mobile it adapts to a
     // bottom sheet automatically.
     let dialog = adw::AboutDialog::builder()
-        .application_name("Counter")
+        .application_name("Tally")
         .application_icon(config::APP_ID)
         .version(config::VERSION)
         .developers(["keinsell"])
         // Icon artwork by Victoria Lacroix, taken from Tally
         // (https://codeberg.org/bragefuglseth/tally), GPL-3.0-or-later.
         .designers(["Victoria Lacroix"])
-        .website("https://www.gnome.org/")
-        .issue_url("https://github.com/keinsell/counter/issues")
+        .website("https://github.com/keinsell/tally")
+        .issue_url("https://github.com/keinsell/tally/issues")
         .license_type(gtk::License::MitX11)
         .build();
     dialog.present(Some(parent));
@@ -127,7 +127,7 @@ pub fn build_ui(app: &adw::Application) {
     window.add_action(&about);
 
     let menu = gio::Menu::new();
-    menu.append(Some("_About Counter"), Some("win.about"));
+    menu.append(Some("_About Tally"), Some("win.about"));
     menu_button.set_popover(Some(&gtk::PopoverMenu::from_model(Some(&menu))));
 
     app.set_accels_for_action(

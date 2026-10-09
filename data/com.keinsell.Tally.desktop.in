@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=Tally
+GenericName=Tally
+Comment=Keep track of counts
+Exec=counter
+Icon=@app-id@
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Utility;
+Keywords=counter;count;tally;clicker;
+StartupNotify=true
+SingleMainWindow=true
+X-GNOME-UsesNotifications=false
+X-Purism-FormFactor=Workstation;Mobile;
